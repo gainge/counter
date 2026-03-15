@@ -1,0 +1,457 @@
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Theme variables ── */
+:root {
+  --bg: #f5f5f5;
+  --surface: #ffffff;
+  --text: #1a1a1a;
+  --text-secondary: #666666;
+  --border: #e0e0e0;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --danger: #e74c3c;
+  --fab-bg: #333333;
+  --fab-text: #ffffff;
+}
+
+[data-theme="dark"] {
+  --bg: #1a1a1a;
+  --surface: #2a2a2a;
+  --text: #f0f0f0;
+  --text-secondary: #aaaaaa;
+  --border: #3a3a3a;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --fab-bg: #f0f0f0;
+  --fab-text: #1a1a1a;
+}
+
+/* ── Base ── */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100dvh;
+  transition: background 0.2s, color 0.2s;
+}
+
+#app {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px;
+  min-height: 100dvh;
+  position: relative;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  flex: 1;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 8px;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+
+.icon-btn:hover {
+  background: var(--border);
+}
+
+.icon-btn.active {
+  background: var(--border);
+}
+
+/* ── Counter cards ── */
+.counter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.counter-card {
+  border-radius: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.counter-card:active {
+  transform: scale(0.98);
+}
+
+.counter-card-name {
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.counter-card-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.counter-card-btn {
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 8px 16px;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.15s;
+  border-radius: 6px;
+}
+
+.counter-card-btn:hover {
+  opacity: 0.8;
+}
+
+.counter-card-value {
+  flex: 1;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 8px 4px;
+  border-radius: 6px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Settings mode icons ── */
+.card-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-wrapper .counter-card {
+  flex: 1;
+  min-width: 0;
+}
+
+.settings-icon {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 8px;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+
+.settings-icon:hover {
+  background: var(--border);
+}
+
+.settings-icon.delete-btn:hover {
+  color: var(--danger);
+}
+
+/* ── FAB ── */
+.fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--fab-bg);
+  color: var(--fab-text);
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px var(--shadow);
+  transition: transform 0.15s;
+}
+
+.fab:hover {
+  transform: scale(1.1);
+}
+
+/* ── Empty state ── */
+.empty-state {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 48px 16px;
+  font-size: 1rem;
+}
+
+/* ── Counter Main view ── */
+.counter-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100dvh - 32px);
+}
+
+.counter-main-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.counter-main-header h2 {
+  font-size: 1.3rem;
+  flex: 1;
+  text-align: center;
+}
+
+.counter-main-value {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  font-weight: 700;
+  word-break: break-all;
+}
+
+.counter-main-controls {
+  display: flex;
+  width: 100%;
+  gap: 2px;
+  margin-bottom: 16px;
+}
+
+.counter-main-btn {
+  flex: 1;
+  border: none;
+  font-size: 2.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 24px;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.15s;
+  border-radius: 8px;
+}
+
+.counter-main-btn:hover {
+  opacity: 0.85;
+}
+
+.counter-main-btn:active {
+  opacity: 0.7;
+}
+
+/* ── Edit view ── */
+.edit-view {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.edit-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.edit-header h2 {
+  flex: 1;
+  font-size: 1.3rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.form-group input {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: var(--surface);
+  color: var(--text);
+  min-height: 44px;
+}
+
+.form-group input:focus {
+  outline: 2px solid #5b9bd5;
+  outline-offset: -1px;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.form-row label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  min-width: 80px;
+}
+
+.form-row input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: var(--surface);
+  color: var(--text);
+  min-height: 44px;
+}
+
+.form-row input:focus {
+  outline: 2px solid #5b9bd5;
+  outline-offset: -1px;
+}
+
+/* ── Color swatches ── */
+.color-section label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.color-swatch {
+  aspect-ratio: 1;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  min-width: 40px;
+  min-height: 40px;
+  transition: transform 0.1s;
+}
+
+.color-swatch:hover {
+  transform: scale(1.1);
+}
+
+.color-swatch.selected {
+  border-color: var(--text);
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--text);
+}
+
+.save-btn {
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--fab-bg);
+  color: var(--fab-text);
+  min-height: 48px;
+  margin-top: 8px;
+  transition: opacity 0.15s;
+}
+
+.save-btn:hover {
+  opacity: 0.9;
+}
+
+/* ── Confirm dialog ── */
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.confirm-dialog {
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 300px;
+  width: 90%;
+  text-align: center;
+}
+
+.confirm-dialog p {
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.confirm-actions button {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  min-height: 44px;
+  font-weight: 500;
+}
+
+.btn-cancel {
+  background: var(--border);
+  color: var(--text);
+}
+
+.btn-confirm-delete {
+  background: var(--danger);
+  color: white;
+}
