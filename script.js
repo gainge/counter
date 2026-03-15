@@ -117,11 +117,11 @@
         const name = escapeHtml(c.name);
 
         const cardHtml = `
-          <div class="counter-card" style="background:${bg}; color:${fg}" data-action="open-counter" data-id="${c.id}">
+          <div class="counter-card-wrapper" style="background:${bg}; color:${fg}" data-id="${c.id}">
             <div class="counter-card-name">${name}</div>
             <div class="counter-card-row">
               <button class="counter-card-btn" style="background:${bg}; color:${fg}" data-action="decrement" data-id="${c.id}">−</button>
-              <div class="counter-card-value" style="background:rgba(255,255,255,0.35); color:${fg}">${c.value}</div>
+              <div class="counter-card-body" style="background:rgba(255,255,255,0.35); color:${fg}" data-action="open-counter" data-id="${c.id}">${c.value}</div>
               <button class="counter-card-btn" style="background:${bg}; color:${fg}" data-action="increment" data-id="${c.id}">+</button>
             </div>
           </div>`;
